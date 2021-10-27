@@ -28,7 +28,9 @@ document.querySelector('form').addEventListener('submit', addMovie)
 
 const deleteMovie = (event) => {
     event.target.parentNode.remove()
-    message.textContent = 'Movie Deleted!'
+    message.textContent = `${event.target.previousSibling.textContent} deleted!`
+    revealMessage()
+
 }
 
 // So we made an event listener below, that has a listener 
@@ -43,12 +45,20 @@ const deleteMovie = (event) => {
 const crossOffMovie = (event) => {
     event.target.classList.toggle('checked')
     if (event.target.classList.contains('checked')) {
-        message.textContent = "Movie watched!"
+        message.textContent = `${event.target.textContent} watched!`
     } else {
-        message.textContent = "Movie added back!"
+        message.textContent = `${event.target.textContent} added back!`
     }
+    revealMessage()
 }
 
 // .toggle will look to see if the class exists
 // and if it doesnt it'll add it.
 
+const revealMessage = () => {
+    setTimeout(cb, 1000)
+}
+
+const cb = () => {
+    message.classList.add('hide')
+}
